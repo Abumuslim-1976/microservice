@@ -1,0 +1,10 @@
+server:
+  port: 9081
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+
+springdoc:
+  packagesToScan: uz.uzcard.services.group.controller

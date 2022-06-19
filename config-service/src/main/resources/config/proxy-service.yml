@@ -1,0 +1,19 @@
+server:
+  port: 8060
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+
+zuul:
+  routes:
+    student:
+      path: /student/**
+      serviceId: student-service
+    group:
+      path: /group/**
+      serviceId: group-service
+    auth:
+      path: /auth/**
+      serviceId: auth-service
