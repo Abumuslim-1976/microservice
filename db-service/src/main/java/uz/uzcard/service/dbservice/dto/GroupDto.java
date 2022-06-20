@@ -15,6 +15,4 @@ public class GroupDto {
 
     private Integer groupNumber;
 
-    private Long facultyId;
-
 }

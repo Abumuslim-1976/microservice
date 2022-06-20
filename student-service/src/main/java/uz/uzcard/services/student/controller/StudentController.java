@@ -21,8 +21,6 @@ public class StudentController {
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
     private final StudentRepository studentRepository;
     private final GroupRepository groupRepository;
-//	private final GroupClient groupClient;
-
 
     @GetMapping("/get/{id}")
     public Student getStudent(@PathVariable Long id) {

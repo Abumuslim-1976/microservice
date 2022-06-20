@@ -5,8 +5,22 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/microservice
     username: postgres
-    password: 1998
+    password: postgres
   application:
     name: student-service
   config:
     import: "optional:configserver:http://localhost:8088"
+
+service:
+
+  productServiceUsername: product
+  productServicePassword: product123
+
+  authServiceUsername: auth
+  authServicePassword: auth123
+
+  gatewayServiceUsername: gateway
+  gatewayServicePassword: gateway123
+
+serviceUsername : serviceUsername
+servicePassword : servicePassword

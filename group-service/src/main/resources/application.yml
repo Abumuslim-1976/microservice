@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/microservice
     username: postgres
-    password: 1998
+    password: postgres
   application:
     name: group-service
   config:
