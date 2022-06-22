@@ -9,6 +9,7 @@ import uz.uzcard.service.dbservice.dto.StudentDto;
 import uz.uzcard.service.dbservice.entity.Student;
 import uz.uzcard.service.dbservice.repository.GroupRepository;
 import uz.uzcard.service.dbservice.repository.StudentRepository;
+import uz.uzcard.services.student.annotation.CheckAuth;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +34,7 @@ public class StudentController {
         return studentRepository.findAll();
     }
 
+    @CheckAuth
     @PostMapping("/add")
     public ApiResponse<Student> addStudent(@RequestBody StudentDto studentDto) {
         try {
@@ -48,6 +50,7 @@ public class StudentController {
         }
     }
 
+    @CheckAuth
     @DeleteMapping("/{id}")
     public ApiResponse<Student> deleteStudent(@PathVariable Long id) {
         try {

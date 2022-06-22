@@ -22,7 +22,7 @@ import javax.validation.Valid;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    AuthService authService;
+    private final AuthService authService;
 
     @PostMapping("/register")
     public HttpEntity<?> registerUser(@Valid @RequestBody RegisterDto registerDto) {

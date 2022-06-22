@@ -10,3 +10,10 @@ spring:
     name: group-service
   config:
     import: "optional:configserver:http://localhost:8088"
+
+service:
+  groupServiceUsername: group
+  groupServicePassword: group123
+
+serviceUsername: serviceUsername
+servicePassword: servicePassword

@@ -10,17 +10,20 @@ spring:
     name: student-service
   config:
     import: "optional:configserver:http://localhost:8088"
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
 
 service:
+  studentServiceUsername: student
+  studentServicePassword: student123
 
-  productServiceUsername: product
-  productServicePassword: product123
-
-  authServiceUsername: auth
-  authServicePassword: auth123
-
-  gatewayServiceUsername: gateway
-  gatewayServicePassword: gateway123
+#  authServiceUsername: auth
+#  authServicePassword: auth123
+#
+#  gatewayServiceUsername: gateway
+#  gatewayServicePassword: gateway123
 
 serviceUsername : serviceUsername
 servicePassword : servicePassword

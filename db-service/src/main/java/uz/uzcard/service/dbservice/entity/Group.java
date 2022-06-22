@@ -16,7 +16,7 @@ public class Group{
 	private Long id;
 
 	@Column(nullable = false)
-	private String name;
+	private String groupName;
 
 	@Column(nullable = false)
 	private Integer groupNumber;

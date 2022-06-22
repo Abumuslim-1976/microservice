@@ -1,6 +1,7 @@
 package uz.uzcard.services.auth.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,6 +17,9 @@ import uz.uzcard.service.dbservice.entity.User;
 import uz.uzcard.service.dbservice.enums.SystemRoleName;
 import uz.uzcard.service.dbservice.repository.UserRepository;
 import uz.uzcard.services.auth.config.JwtProvider;
+import uz.uzcard.services.auth.exception.RestException;
+
+import java.util.UUID;
 
 
 @Service
@@ -31,8 +35,8 @@ public class AuthService implements UserDetailsService {
     JwtProvider jwtProvider;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByUsername(email).orElseThrow(() -> new UsernameNotFoundException(email));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
     }
 
     public ApiResponse registerUser(RegisterDto registerDto) {
@@ -44,8 +48,9 @@ public class AuthService implements UserDetailsService {
                 passwordEncoder.encode(registerDto.getPassword()),
                 SystemRoleName.SYSTEM_USER
         );
-        userRepository.save(user);
-        return new ApiResponse("User saqlandi", true);
+        User saveUser = userRepository.save(user);
+        String token = jwtProvider.generateToken(saveUser.getUsername());
+        return new ApiResponse("User saqlandi", token, true);
     }
 
     public ApiResponse loginToSystem(LoginDto loginDto) {

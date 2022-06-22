@@ -1,4 +1,4 @@
-package uz.uzcard.services.student.config;
+package uz.uzcard.services.group.config;
 
 import feign.RequestInterceptor;
 import org.apache.http.entity.ContentType;
@@ -8,16 +8,16 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class FeignConfig {
-    @Value("${service.studentServiceUsername}")
-    private String studentServiceUsername;
-    @Value("${service.studentServicePassword}")
-    private String studentServicePassword;
+    @Value("${service.groupServiceUsername}")
+    private String groupServiceUsername;
+    @Value("${service.groupServicePassword}")
+    private String groupServicePassword;
 
     @Bean
     public RequestInterceptor requestInterceptor() {
         return requestTemplate -> {
-            requestTemplate.header("serviceName", studentServiceUsername);
-            requestTemplate.header("servicePassword", studentServicePassword);
+            requestTemplate.header("serviceName", groupServiceUsername);
+            requestTemplate.header("servicePassword", groupServicePassword);
             requestTemplate.header("Accept", ContentType.APPLICATION_JSON.getMimeType());
         };
     }

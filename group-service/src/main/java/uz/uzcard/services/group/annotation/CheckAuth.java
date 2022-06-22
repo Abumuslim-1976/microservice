@@ -1,4 +1,4 @@
-package uz.uzcard.services.student.annotation;
+package uz.uzcard.services.group.annotation;
 
 
 import uz.uzcard.service.dbservice.enums.SystemRoleName;
