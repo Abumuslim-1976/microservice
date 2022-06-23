@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/microservice
     username: postgres
-    password: postgres
+    password: 1998
   application:
     name: group-service
   config:
@@ -17,3 +17,6 @@ service:
 
 serviceUsername: serviceUsername
 servicePassword: servicePassword
+
+#server:
+#  forward-headers-strategy: framework

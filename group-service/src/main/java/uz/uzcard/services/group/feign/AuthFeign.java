@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import uz.uzcard.service.dbservice.dto.ApiResponse;
 import uz.uzcard.service.dbservice.entity.User;
-import uz.uzcard.service.dbservice.enums.SystemRoleName;
+import uz.uzcard.service.dbservice.enums.PermissionEnum;
 import uz.uzcard.services.group.config.FeignConfig;
 import uz.uzcard.services.group.utils.RestConstants;
 
@@ -20,7 +20,7 @@ public interface AuthFeign {
 
     @PostMapping("/auth/check-permission")
     ApiResponse<User> checkPermission(@RequestHeader("Authorization") String token,
-                                    @RequestBody SystemRoleName systemRoleName);
+                                    @RequestBody PermissionEnum permissionEnum);
 
 
 }

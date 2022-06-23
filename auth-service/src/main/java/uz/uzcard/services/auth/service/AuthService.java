@@ -15,12 +15,11 @@ import uz.uzcard.service.dbservice.dto.ApiResponse;
 import uz.uzcard.service.dbservice.dto.LoginDto;
 import uz.uzcard.service.dbservice.dto.RegisterDto;
 import uz.uzcard.service.dbservice.entity.User;
-import uz.uzcard.service.dbservice.enums.SystemRoleName;
+import uz.uzcard.service.dbservice.enums.PermissionEnum;
+import uz.uzcard.service.dbservice.repository.RoleRepository;
 import uz.uzcard.service.dbservice.repository.UserRepository;
 import uz.uzcard.services.auth.config.JwtProvider;
 import uz.uzcard.services.auth.exception.RestException;
-
-import java.util.UUID;
 
 
 @Service
@@ -28,6 +27,8 @@ public class AuthService implements UserDetailsService {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository;
     @Autowired
     PasswordEncoder passwordEncoder;
     @Autowired
@@ -43,12 +44,11 @@ public class AuthService implements UserDetailsService {
     public ApiResponse<String> registerUser(RegisterDto registerDto) {
         if (userRepository.existsByUsername(registerDto.getUsername()))
             return new ApiResponse<>("Bunday user mavjud", false);
-        User user = new User(
-                registerDto.getFullName(),
-                registerDto.getUsername(),
-                passwordEncoder.encode(registerDto.getPassword()),
-                SystemRoleName.SYSTEM_USER
-        );
+        User user = new User();
+        user.setFullName(registerDto.getFullName());
+        user.setUsername(registerDto.getUsername());
+        user.setPassword(registerDto.getPassword());
+
         User saveUser = userRepository.save(user);
         String token = jwtProvider.generateToken(saveUser.getUsername());
         return new ApiResponse<>("User saqlandi", token, true);
@@ -73,6 +73,21 @@ public class AuthService implements UserDetailsService {
         try {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             return new ApiResponse<>(user, true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RestException(HttpStatus.UNAUTHORIZED, "Autorizatsiyadan o'tmagan");
+        }
+    }
+
+    public ApiResponse<User> checkPermission(PermissionEnum externalPermission) {
+        try {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            for (PermissionEnum permissionEnum : user.getRole().getPermissions()) {
+                if (permissionEnum.equals(externalPermission)) {
+                    return new ApiResponse<>(user, true);
+                }
+            }
+            throw new RestException(HttpStatus.FORBIDDEN, "Sizda bu yo'lga kirish uchun huquq yo'q");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RestException(HttpStatus.UNAUTHORIZED, "Autorizatsiyadan o'tmagan");

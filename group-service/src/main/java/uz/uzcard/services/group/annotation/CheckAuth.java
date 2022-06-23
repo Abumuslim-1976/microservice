@@ -1,7 +1,7 @@
 package uz.uzcard.services.group.annotation;
 
 
-import uz.uzcard.service.dbservice.enums.SystemRoleName;
+import uz.uzcard.service.dbservice.enums.PermissionEnum;
 
 import java.lang.annotation.*;
 
@@ -10,5 +10,5 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Documented
 public @interface CheckAuth {
-    SystemRoleName permission() default SystemRoleName.CHECK;
+    PermissionEnum permission() default PermissionEnum.CHECK;
 }

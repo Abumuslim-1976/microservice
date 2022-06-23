@@ -2,15 +2,13 @@ package uz.uzcard.services.auth.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 import uz.uzcard.service.dbservice.dto.ApiResponse;
 import uz.uzcard.service.dbservice.dto.LoginDto;
 import uz.uzcard.service.dbservice.dto.RegisterDto;
 import uz.uzcard.service.dbservice.entity.User;
-import uz.uzcard.services.auth.config.JwtProvider;
+import uz.uzcard.service.dbservice.enums.PermissionEnum;
 import uz.uzcard.services.auth.service.AuthService;
 
 import javax.validation.Valid;
@@ -39,6 +37,12 @@ public class AuthController {
     public HttpEntity<?> checkUser() {
         ApiResponse<User> checkUser = authService.checkUser();
         return ResponseEntity.status(checkUser.isSuccess() ? 200 : 409).body(checkUser.getData());
+    }
+
+    @PostMapping("/check-permission")
+    public HttpEntity<?> checkPermission(@RequestBody PermissionEnum permissionEnum) {
+        ApiResponse<User> checkPermission = authService.checkPermission(permissionEnum);
+        return ResponseEntity.status(checkPermission.isSuccess() ? 200 : 409).body(checkPermission.getData());
     }
 
 }

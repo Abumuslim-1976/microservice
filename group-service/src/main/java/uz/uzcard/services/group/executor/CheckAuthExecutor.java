@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import uz.uzcard.service.dbservice.dto.ApiResponse;
 import uz.uzcard.service.dbservice.entity.User;
-import uz.uzcard.service.dbservice.enums.SystemRoleName;
+import uz.uzcard.service.dbservice.enums.PermissionEnum;
 import uz.uzcard.services.group.annotation.CheckAuth;
 import uz.uzcard.services.group.exception.RestException;
 import uz.uzcard.services.group.feign.AuthFeign;
@@ -39,7 +39,7 @@ public class CheckAuthExecutor {
             throw new RestException(HttpStatus.UNAUTHORIZED, "FORBIDDEN");
         }
         User user;
-        if (checkAuth.permission().equals(SystemRoleName.CHECK)) {
+        if (checkAuth.permission().equals(PermissionEnum.CHECK)) {
             ApiResponse<User> apiResult = authFeign.checkUser(token);
             user = apiResult.getData();
         } else {

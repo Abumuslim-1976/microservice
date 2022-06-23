@@ -8,11 +8,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import uz.uzcard.service.dbservice.enums.SystemRoleName;
+import uz.uzcard.service.dbservice.enums.PermissionEnum;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -31,8 +32,8 @@ public class User extends AbstractEntity implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private SystemRoleName systemRoleName;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Role role;
 
     private boolean accountNonExpired = true;
 
@@ -42,10 +43,17 @@ public class User extends AbstractEntity implements UserDetails {
 
     private boolean enabled = true;
 
+//    public User(String fullName, String username, String password, Role role) {
+//        this.fullName = fullName;
+//        this.username = username;
+//        this.password = password;
+//        this.role = role;
+//    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(this.systemRoleName.name());
-        return Collections.singletonList(simpleGrantedAuthority);
+        Set<PermissionEnum> permissions = role.getPermissions();
+        return permissions.stream().map(permissionEnum -> new SimpleGrantedAuthority(permissionEnum.name())).collect(Collectors.toSet());
     }
 
     @Override
@@ -66,12 +74,5 @@ public class User extends AbstractEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return this.enabled;
-    }
-
-    public User(String fullName, String username, String password, SystemRoleName systemRoleName) {
-        this.fullName = fullName;
-        this.username = username;
-        this.password = password;
-        this.systemRoleName = systemRoleName;
     }
 }
