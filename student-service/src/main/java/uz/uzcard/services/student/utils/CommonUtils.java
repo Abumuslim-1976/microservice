@@ -46,14 +46,4 @@ public class CommonUtils {
         }
     }
 
-//    public static String buildPhotoUrl(UUID id) {
-//        return RestConstants.DOMAIN +  RestConstants.ATTACHMENT_CONTROLLER + "/download/" + id;
-//    }
-
-//    @SneakyThrows
-//    public  static Timestamp buildTimeStampInTime(Timestamp timestamp){
-//        Time time = new Time(timestamp.getTime());
-//        Timestamp timestampNew = new Timestamp(new SimpleDateFormat("dd/MM/yyy hh:mm:ss").parse(kelishilganSana + " " + time).getTime());
-//        return timestampNew;
-//    }
 }

@@ -12,3 +12,13 @@ spring:
     import: "optional:configserver:http://localhost:8088"
   main:
     allow-circular-references: true
+#eureka:
+#  client:
+#    enabled: true
+
+feign:
+  client:
+    config:
+      SapService:
+        readTimeout: 5000
+        connectTimeout: 5000

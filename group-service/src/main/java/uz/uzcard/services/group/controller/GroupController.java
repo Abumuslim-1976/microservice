@@ -36,7 +36,7 @@ public class GroupController {
     public ApiResponse<Group> addGroup(@RequestBody GroupDto groupDto) {
         try {
             Group group = new Group();
-            group.setName(groupDto.getName());
+            group.setGroupName(groupDto.getName());
             group.setGroupNumber(groupDto.getGroupNumber());
             groupRepository.save(group);
             return new ApiResponse<>("success", group, true);

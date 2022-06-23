@@ -27,3 +27,14 @@ service:
 
 serviceUsername : serviceUsername
 servicePassword : servicePassword
+
+#eureka:
+#  client:
+#    enabled: true
+
+feign:
+  client:
+    config:
+      SapService:
+        readTimeout: 5000
+        connectTimeout: 5000

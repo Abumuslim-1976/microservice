@@ -6,9 +6,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@EnableFeignClients
 @EnableEurekaClient
 @EntityScan(basePackages = "uz.uzcard.service.dbservice.entity")
 @EnableJpaRepositories(basePackages = "uz.uzcard.service.dbservice.repository")

@@ -43,7 +43,6 @@ public class StudentController {
             student.setAge(studentDto.getAge());
             student.setGroup(groupRepository.findById(studentDto.getGroupId()).get());
             studentRepository.save(student);
-            //		student.setGroup(groupClient.getGroup(studentDto.getGroupId()));
             return new ApiResponse<>("success", student, true);
         } catch (Exception e) {
             return new ApiResponse<>("error", false);

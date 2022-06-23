@@ -1,7 +1,7 @@
 package uz.uzcard.services.student.exception;
 
 import org.springframework.http.HttpStatus;
-import uz.uzcard.services.student.dto.ErrorData;
+import uz.uzcard.service.dbservice.dto.ErrorData;
 
 import java.util.List;
 
