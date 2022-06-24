@@ -17,3 +17,7 @@ zuul:
     auth:
       path: /auth/**
       serviceId: auth-service
+
+ribbon:
+  eureka:
+    enabled: false

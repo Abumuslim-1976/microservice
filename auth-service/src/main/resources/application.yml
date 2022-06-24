@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/microservice
     username: postgres
-    password: 1998
+    password: postgres
   application:
     name: auth-service
   config:
@@ -23,5 +23,5 @@ feign:
         readTimeout: 5000
         connectTimeout: 5000
 
-#server:
-#  forward-headers-strategy: framework
+
+
