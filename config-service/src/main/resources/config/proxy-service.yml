@@ -1,23 +1,23 @@
-server:
-  port: 8060
+#server:
+#  port: 8060
+#
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8061/eureka/
+#
+#zuul:
+#  routes:
+#    student-service:
+#      path: /api/student/**
+#      serviceId: student-service
+#    group-service:
+#      path: /api/group/**
+#      serviceId: group-service
+#    auth-service:
+#      path: /api/open-auth/auth/**
+#      serviceId: auth-service
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8061/eureka/
-
-zuul:
-  routes:
-    student:
-      path: /student/**
-      serviceId: student-service
-    group:
-      path: /group/**
-      serviceId: group-service
-    auth:
-      path: /auth/**
-      serviceId: auth-service
-
-ribbon:
-  eureka:
-    enabled: false
+#ribbon:
+#  eureka:
+#    enabled: false

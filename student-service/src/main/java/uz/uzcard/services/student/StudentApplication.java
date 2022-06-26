@@ -18,7 +18,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EntityScan(basePackages = "uz.uzcard.service.dbservice.entity")
 @EnableJpaRepositories(basePackages = "uz.uzcard.service.dbservice.repository")
 @OpenAPIDefinition
-//@EnableConfigurationProperties
 public class StudentApplication {
 
     public static void main(String[] args) {

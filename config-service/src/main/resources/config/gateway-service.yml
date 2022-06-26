@@ -29,7 +29,7 @@ spring:
           filters:
             - RewritePath=/group/(?<path>.*), /$\{path}
         - id: auth-service
-          uri: http://localhost:9082/
+          uri: http://localhost:8060/
           predicates:
             - Path=/auth/**
           filters:

@@ -14,7 +14,6 @@ import java.util.Collections;
 import java.util.List;
 
 @Configuration
-//@ConditionalOnProperty(name = "springdoc.swagger-ui.enabled",  havingValue = "true", matchIfMissing = true)
 public class OpenApiConfig {
 
     private static final String BEARER_FORMAT = "JWT";
@@ -32,7 +31,7 @@ public class OpenApiConfig {
 
     private Info info() {
         return new Info()
-                .title("Microservices API")
+                .title("Students API")
                 .description("this program is for studying the microservice")
                 .version("v3")
                 .contact(new Contact()

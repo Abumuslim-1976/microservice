@@ -13,9 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan(basePackages = "uz.uzcard.service.dbservice.entity")
 @EnableJpaRepositories(basePackages = "uz.uzcard.service.dbservice.repository")
 //@EnableFeignClients
-@OpenAPIDefinition(info =
-@Info(title = "Organization API", version = "3.0", description = "Documentation Organization API v3.0")
-)
+@OpenAPIDefinition
 public class AuthApplication {
 
     public static void main(String[] args) {
