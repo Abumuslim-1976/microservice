@@ -1,3 +1,6 @@
+server:
+  port: 9080
+
 spring:
   jpa:
     hibernate:
@@ -19,18 +22,8 @@ service:
   studentServiceUsername: student
   studentServicePassword: student123
 
-#  authServiceUsername: auth
-#  authServicePassword: auth123
-#
-#  gatewayServiceUsername: gateway
-#  gatewayServicePassword: gateway123
-
 serviceUsername : serviceUsername
 servicePassword : servicePassword
-
-#eureka:
-#  client:
-#    enabled: true
 
 feign:
   client:
@@ -38,3 +31,13 @@ feign:
       SapService:
         readTimeout: 5000
         connectTimeout: 5000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+
+springdoc:
+  packagesToScan: uz.uzcard.services.student.controller
+
+

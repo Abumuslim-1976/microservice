@@ -1,5 +1,64 @@
+server:
+  port: 8060
+
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+    instance:
+      prefer-ip-address: true
+
 spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: student-service
+          uri: http://localhost:8060/
+          predicates:
+            - Path=/student/**
+          filters:
+            - RewritePath=/student/(?<path>.*), /$\{path}
+        - id: group-service
+          uri: http://localhost:8060/
+          predicates:
+            - Path=/group/**
+          filters:
+            - RewritePath=/group/(?<path>.*), /$\{path}
+        - id: auth-service
+          uri: http://localhost:8060/
+          predicates:
+            - Path=/auth/**
+          filters:
+            - RewritePath=/auth/(?<path>.*), /$\{path}
+        - id: openapi
+          uri: http://localhost:${server.port}
+          predicates:
+            - Path=/v3/api-docs/**
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+  main:
+    web-application-type: reactive
   application:
     name: gateway-service
   config:
     import: "optional:configserver:http://localhost:8088"
+
+zuul:
+  routes:
+    student-service:
+      path: /api/student/**
+      serviceId: student-service
+    group-service:
+      path: /api/group/**
+      serviceId: group-service
+    auth-service:
+      path: /api/open-auth/auth/**
+      serviceId: auth-service
+
+ribbon:
+  eureka:
+    enabled: false
