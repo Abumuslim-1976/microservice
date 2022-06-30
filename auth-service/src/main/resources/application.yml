@@ -1,3 +1,6 @@
+server:
+  port: 9082
+
 spring:
   jpa:
     hibernate:
@@ -22,6 +25,13 @@ feign:
       SapService:
         readTimeout: 5000
         connectTimeout: 5000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+springdoc:
+  packagesToScan: uz.uzcard.services.auth.controller
 
 
 

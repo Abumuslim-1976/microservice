@@ -1,52 +1,53 @@
-server:
-  port: 8060
+#server:
+#  port: 8060
+#
+#eureka:
+#  client:
+#    enabled: true
+#    serviceUrl:
+#      defaultZone: http://localhost:8061/eureka/
+#    instance:
+#      prefer-ip-address: true
+#
+#spring:
+#  cloud:
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+#      routes:
+#        - id: student-service
+#          uri: http://localhost:8060/
+#          predicates:
+#            - Path=/student/**
+#          filters:
+#            - RewritePath=/student/(?<path>.*), /$\{path}
+#        - id: group-service
+#          uri: http://localhost:8060/
+#          predicates:
+#            - Path=/group/**
+#          filters:
+#            - RewritePath=/group/(?<path>.*), /$\{path}
+#        - id: auth-service
+#          uri: http://localhost:8060/
+#          predicates:
+#            - Path=/auth/**
+#          filters:
+#            - RewritePath=/auth/(?<path>.*), /$\{path}
+#        - id: openapi
+#          uri: http://localhost:${server.port}
+#          predicates:
+#            - Path=/v3/api-docs/**
+#          filters:
+#            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
 
-eureka:
-  client:
-    enabled: true
-    serviceUrl:
-      defaultZone: http://localhost:8061/eureka/
-    instance:
-      prefer-ip-address: true
+#springdoc:
+#  swagger-ui:
+#    urls:
+#      - name: student
+#        url: /v3/api-docs/student
+#      - name: group
+#        url: /v3/api-docs/group
+#      - name: auth
+#        url: /v3/api-docs/auth
 
-spring:
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-      routes:
-        - id: student-service
-          uri: http://localhost:9080/
-          predicates:
-            - Path=/student/**
-          filters:
-            - RewritePath=/student/(?<path>.*), /$\{path}
-        - id: group-service
-          uri: http://localhost:9081/
-          predicates:
-            - Path=/group/**
-          filters:
-            - RewritePath=/group/(?<path>.*), /$\{path}
-        - id: auth-service
-          uri: http://localhost:8060/
-          predicates:
-            - Path=/auth/**
-          filters:
-            - RewritePath=/auth/(?<path>.*), /$\{path}
-        - id: openapi
-          uri: http://localhost:${server.port}
-          predicates:
-            - Path=/v3/api-docs/**
-          filters:
-            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
-
-springdoc:
-  swagger-ui:
-    urls:
-      - name: student
-        url: /v3/api-docs/student
-      - name: group
-        url: /v3/api-docs/group
-      - name: auth
-        url: /v3/api-docs/auth

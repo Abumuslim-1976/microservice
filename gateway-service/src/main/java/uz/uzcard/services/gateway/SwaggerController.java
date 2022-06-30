@@ -28,31 +28,19 @@ public class SwaggerController {
                 .build();
     }
 
-//    @Bean
-//    GroupedOpenApi studentApis() {
-//        return GroupedOpenApi
-//                .builder()
-//                .group("student")
-//                .pathsToMatch("/**/student/**")
-//                .packagesToScan("uz.uzcard.services.student.controller").build();
-//    }
-//
-//    @Bean
-//    GroupedOpenApi groupApis() {
-//        return GroupedOpenApi
-//                .builder()
-//                .group("group")
-//                .pathsToMatch("/**/group/**")
-//                .packagesToScan("uz.uzcard.services.group.controller").build();
-//    }
-//
-//    @Bean
-//    GroupedOpenApi authApis() {
-//        return GroupedOpenApi
-//                .builder()
-//                .group("auth")
-//                .packagesToScan("uz.uzcard.services.student.controller")
-//                .pathsToMatch("/**/auth/**").build();
-//    }
+    @Bean
+    GroupedOpenApi studentApis() {
+        return GroupedOpenApi.builder().group("student").pathsToMatch("/**/student/**").build();
+    }
+
+    @Bean
+    GroupedOpenApi groupApis() {
+        return GroupedOpenApi.builder().group("group").pathsToMatch("/**/group/**").build();
+    }
+
+    @Bean
+    GroupedOpenApi authApis() {
+        return GroupedOpenApi.builder().group("auth").pathsToMatch("/**/auth/**").build();
+    }
 
 }
